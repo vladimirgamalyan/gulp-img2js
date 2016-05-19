@@ -1,9 +1,11 @@
 'use strict';
 
 const path = require('path');
+const fs = require('fs');
 const through = require('through2');
 const gutil = require('gulp-util');
 const chalk = require('chalk');
+const changeCase = require('change-case');
 const beautify = require('js-beautify').js_beautify;
 const PluginError = gutil.PluginError;
 
@@ -22,7 +24,7 @@ module.exports = function (file) {
 
   	let latestFile;
   	let result = `
-  		export createImages() {
+  		function createImages() {
     		"use strict";
     		var result = {},
         	prefix = "data:image/png;base64,";
@@ -40,7 +42,7 @@ module.exports = function (file) {
 
 		// we don't do streams
     	if (file.isStream()) {
-      		this.emit('error', new PluginError(PLUGIN_NAME,  'Streaming not supported'));
+      		this.emit('error', new PluginError(PLUGIN_NAME, 'Streaming not supported'));
       		cb();
       		return;
     	}
@@ -56,7 +58,18 @@ module.exports = function (file) {
 			latestFile = file;
 		}
 
-		result += 'result.brick = new Image();\n';
+		let imgName = path.basename(file.path, path.extname(file.path));
+		imgName = changeCase.camelCase(imgName);
+		if (!/^[a-zA-Z_$][0-9a-zA-Z_$]*$/.test(imgName)) {
+      		this.emit('error', new PluginError(PLUGIN_NAME, `Invalid js identifier for file ${file.path}`));
+      		cb();			
+		}
+
+		let base64data = fs.readFileSync(file.path).toString('base64');
+
+		result += `result.${imgName} = new Image();
+			result.${imgName}.src = prefix + '${base64data}';
+		`;
 
 		cb();
   	}
