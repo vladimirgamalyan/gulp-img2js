@@ -4,6 +4,7 @@ const path = require('path');
 const through = require('through2');
 const gutil = require('gulp-util');
 const chalk = require('chalk');
+const beautify = require('js-beautify').js_beautify;
 const PluginError = gutil.PluginError;
 
 module.exports = function (file) {
@@ -20,6 +21,12 @@ module.exports = function (file) {
   	}
 
   	let latestFile;
+  	let result = `
+  		export createImages() {
+    		"use strict";
+    		var result = {},
+        	prefix = "data:image/png;base64,";
+    `;
 
   	function bufferContents(file, enc, cb) {
 
@@ -49,6 +56,8 @@ module.exports = function (file) {
 			latestFile = file;
 		}
 
+		result += 'result.brick = new Image();\n';
+
 		cb();
   	}
 
@@ -62,9 +71,14 @@ module.exports = function (file) {
       		return;
     	}
 
+    	result += `return result;
+    		}
+    	`;
+		result = beautify(result);
+
    		var outputFile = latestFile.clone({contents: false});
    		outputFile.path = path.join(latestFile.base, file);
-  		outputFile.contents = new Buffer('foo');
+  		outputFile.contents = new Buffer(result);
 
   		this.push(outputFile);
   		cb();
