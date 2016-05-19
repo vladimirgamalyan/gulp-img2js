@@ -3,6 +3,7 @@
 const path = require('path');
 const through = require('through2');
 const gutil = require('gulp-util');
+const chalk = require('chalk');
 const PluginError = gutil.PluginError;
 
 module.exports = function (file) {
@@ -14,7 +15,7 @@ module.exports = function (file) {
     	throw new PluginError(PLUGIN_NAME, `Missing file option for ${PLUGIN_NAME}`);
   	}
 
-	if (typeof file === 'string') {
+	if (typeof file !== 'string') {
     	throw new PluginError(PLUGIN_NAME, `File option must be a string for ${PLUGIN_NAME}`);
   	}
 
@@ -63,7 +64,7 @@ module.exports = function (file) {
 
    		var outputFile = latestFile.clone({contents: false});
    		outputFile.path = path.join(latestFile.base, file);
-  		outputFile.contents = 'foo';
+  		outputFile.contents = new Buffer('foo');
 
   		this.push(outputFile);
   		cb();
