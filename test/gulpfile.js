@@ -3,6 +3,6 @@ var gulp = require('gulp'),
 
 gulp.task('default', function (){
 	gulp.src('./images/*')
-		.pipe(img2js('output.js'))
+		.pipe(img2js('sprites.js'))
 		.pipe(gulp.dest('./tmp'));
 });
