@@ -12,7 +12,7 @@ const PluginError = gutil.PluginError;
 module.exports = function (file) {
 
 	const PLUGIN_NAME = 'gulp-img2js';
-	const validExts = ['.jpg', '.jpeg', '.png', '.gif', '.svg'];
+	const validExts = ['.jpg', '.jpeg', '.png', '.gif'];
 
 	if (!file) {
     	throw new PluginError(PLUGIN_NAME, `Missing file option for ${PLUGIN_NAME}`);
@@ -26,8 +26,7 @@ module.exports = function (file) {
   	let result = `
   		function createImages() {
     		"use strict";
-    		var result = {},
-        	prefix = "data:image/png;base64,";
+    		var result = {};
     `;
 
   	function bufferContents(file, enc, cb) {
@@ -48,7 +47,8 @@ module.exports = function (file) {
     	}
 
     	// skip unsupported images
-	    if (validExts.indexOf(path.extname(file.path).toLowerCase()) === -1) {
+    	let ext = path.extname(file.path).toLowerCase();
+	    if (validExts.indexOf(ext) === -1) {
 			gutil.log(`${PLUGIN_NAME}: Skipping unsupported image ${chalk.blue(file.relative)}`);
 			cb();
 			return;
@@ -67,8 +67,12 @@ module.exports = function (file) {
 
 		let base64data = fs.readFileSync(file.path).toString('base64');
 
+		ext = ext.substr(1);
+		if (ext === 'jpg') {
+			ext = 'jpeg';
+		}		
 		result += `result.${imgName} = new Image();
-			result.${imgName}.src = prefix + '${base64data}';
+			result.${imgName}.src = 'data:image/${ext};base64,${base64data}';
 		`;
 
 		cb();
