@@ -64,4 +64,4 @@ SOFTWARE.
 
 
 Images for tests designed by Freepik
-(License)[http://file005.flaticon.com/downloads/license/license.pdf]
+[License](http://file005.flaticon.com/downloads/license/license.pdf)
