@@ -22,6 +22,7 @@ module.exports = function (file) {
     	throw new PluginError(PLUGIN_NAME, `File option must be a string for ${PLUGIN_NAME}`);
   	}
 
+  	let usedIndentifiers = new Set();
   	let latestFile;
   	let result = `
   		function createImages() {
@@ -58,12 +59,20 @@ module.exports = function (file) {
 			latestFile = file;
 		}
 
+		// convert file name to js identifier
 		let imgName = path.basename(file.path, path.extname(file.path));
 		imgName = changeCase.camelCase(imgName);
 		if (!/^[a-zA-Z_$][0-9a-zA-Z_$]*$/.test(imgName)) {
       		this.emit('error', new PluginError(PLUGIN_NAME, `Invalid js identifier for file ${file.path}`));
       		cb();			
 		}
+
+		// test if identifier is already used
+		if (usedIndentifiers.has(imgName)) {
+			this.emit('error', new PluginError(PLUGIN_NAME, `Duplicate js identifier for file ${file.path}`));
+      		cb();						
+		}
+		usedIndentifiers.add(imgName);
 
 		let base64data = fs.readFileSync(file.path).toString('base64');
 
