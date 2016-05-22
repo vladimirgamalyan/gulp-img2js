@@ -1,6 +1,6 @@
 {
   "name": "gulp-img2js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Embeds images to javascript",
   "main": "index.js",
   "scripts": {
