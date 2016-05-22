@@ -6,6 +6,47 @@
 [![NPM version](https://img.shields.io/npm/v/gulp-img2js.svg)](https://www.npmjs.com/package/gulp-img2js)
 [![Node version](https://img.shields.io/node/v/gulp-img2js.svg)](https://nodejs.org/)
 
+
+## What does it do
+
+![Image](https://raw.githubusercontent.com/vladimitgamalian/gulp-img2js/master/test/images/agenda.jpg)
+![Image](https://raw.githubusercontent.com/vladimitgamalian/gulp-img2js/master/test/images/eye_foo.gif)
+![Image](https://raw.githubusercontent.com/vladimitgamalian/gulp-img2js/master/test/images/folder-1.png)
+
+will be produce a js file:
+
+```js
+function createImages() {
+    "use strict";
+    var result = {};
+    result.addUser = new Image();
+    result.addUser.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAT...==';
+    result.agenda = new Image();
+    result.agenda.src = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAdAB0M...==';
+    result.eyeFoo = new Image();
+    result.eyeFoo.src = 'data:image/gif;base64,R0lGODlhQ77+MdADrKQh0xkksgQ...=';
+    result.folder1 = new Image();
+    result.folder1.src = 'data:image/png;base64,iVsm+MCPj7SXEAAAAASUVORK5C...=';
+    return result;
+}
+```
+
+and can be used for example as:
+
+```js
+window.onload = function() {
+	let canvas = document.getElementById('viewport');
+	let ctx = canvas.getContext('2d');
+	let images  = createImages();
+
+	ctx.drawImage(images.addUser, 0, 0);
+	ctx.drawImage(images.agenda, 100, 0);
+	ctx.drawImage(images.eyeFoo, 0, 80);
+	ctx.drawImage(images.folder1, 100, 80);
+};
+```
+
+
 ## Installation
 
 Install package with NPM and add it to your development dependencies:
@@ -14,19 +55,9 @@ Install package with NPM and add it to your development dependencies:
 
 ## Information
 
-<table>
-<tr>
-<td>Package</td><td>gulp-img2js</td>
-</tr>
-<tr>
-<td>Description</td>
-<td>Embeds images to javascript</td>
-</tr>
-<tr>
-<td>Node Version</td>
-<td>>= 4</td>
-</tr>
-</table>
+| Package | gulp-img2js |
+| Description | Embed images to javascript |
+| Node Version | >= 4 |
 
 ## Usage
 
