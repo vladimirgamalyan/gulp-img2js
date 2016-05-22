@@ -9,9 +9,9 @@
 
 ## What does it do
 
-![Image](https://raw.githubusercontent.com/vladimitgamalian/gulp-img2js/master/test/images/agenda.jpg)
-![Image](https://raw.githubusercontent.com/vladimitgamalian/gulp-img2js/master/test/images/eye_foo.gif)
-![Image](https://raw.githubusercontent.com/vladimitgamalian/gulp-img2js/master/test/images/folder-1.png)
+![Image](https://raw.githubusercontent.com/vladimirgamalian/gulp-img2js/master/test/images/agenda.jpg)
+![Image](https://raw.githubusercontent.com/vladimirgamalian/gulp-img2js/master/test/images/eye_foo.gif)
+![Image](https://raw.githubusercontent.com/vladimirgamalian/gulp-img2js/master/test/images/folder-1.png)
 
 will be produce a js file:
 
@@ -55,6 +55,7 @@ Install package with NPM and add it to your development dependencies:
 
 ## Information
 
+| --- | --- |
 | Package | gulp-img2js |
 | Description | Embed images to javascript |
 | Node Version | >= 4 |
