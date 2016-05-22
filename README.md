@@ -13,7 +13,7 @@
 ![Image](https://raw.githubusercontent.com/vladimirgamalian/gulp-img2js/master/test/images/eye_foo.gif)
 ![Image](https://raw.githubusercontent.com/vladimirgamalian/gulp-img2js/master/test/images/folder-1.png)
 
-will be produce a js file:
+will be converted to a js file:
 
 ```js
 function createImages() {
@@ -55,10 +55,19 @@ Install package with NPM and add it to your development dependencies:
 
 ## Information
 
-| --- | --- |
-| Package | gulp-img2js |
-| Description | Embed images to javascript |
-| Node Version | >= 4 |
+<table>
+<tr>
+<td>Package</td><td>gulp-img2js</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Embeds images to javascript</td>
+</tr>
+<tr>
+<td>Node Version</td>
+<td>>= 4</td>
+</tr>
+</table>
 
 ## Usage
 
