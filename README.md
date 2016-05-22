@@ -1,8 +1,10 @@
 # gulp-img2js
-Embeds images to javascript
+
+> A [Gulp plugin](http://gulpjs.com/) for embedding images to javascript sources
 
 [![Build Status](https://travis-ci.org/vladimirgamalian/gulp-img2js.svg?branch=master)](https://travis-ci.org/vladimirgamalian/gulp-img2js)
-
+[![NPM version](https://img.shields.io/npm/v/gulp-img2js.svg)](https://www.npmjs.com/package/gulp-img2js)
+[![Node version](https://img.shields.io/node/v/gh-badges.svg)](https://nodejs.org/)
 
 ## Installation
 
