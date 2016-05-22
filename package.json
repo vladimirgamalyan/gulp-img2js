@@ -1,6 +1,6 @@
 {
   "name": "gulp-img2js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Embeds images to javascript",
   "main": "index.js",
   "scripts": {
@@ -41,6 +41,6 @@
   },
   "engines": {
     "node": ">=4",
-	"npm": ">=3"
+    "npm": ">=3"
   }
 }
