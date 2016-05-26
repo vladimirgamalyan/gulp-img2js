@@ -7,7 +7,7 @@
 [![Node version](https://img.shields.io/node/v/gulp-img2js.svg)](https://nodejs.org/)
 
 
-## What does it do
+## How it works
 
 ![Image](https://raw.githubusercontent.com/vladimirgamalian/gulp-img2js/master/test/images/agenda.jpg)
 ![Image](https://raw.githubusercontent.com/vladimirgamalian/gulp-img2js/master/test/images/eye_foo.gif)
